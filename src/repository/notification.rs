@@ -13,8 +13,8 @@ pub struct NotificationRepository;
 
 impl NotificationRepository {
     pub fn add(notification: Notification) -> Notification {
-        NOTIFICATIONS.write().unwrap();
-        notifications.push(notification.clone());
+        NOTIFICATIONS.write().unwrap()
+            .push(notification.clone());
         return notification;
     }
 

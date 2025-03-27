@@ -20,7 +20,7 @@ impl NotificationService {
         let notification_receiver_url: String = format!("{}/receive",
             APP_CONFIG.get_instance_root_url());
         let payload: SubscriberRequest = SubscriberRequest {
-            product_type: String::from(product_type_str),
+            name: APP_CONFIG.get_instance_name().to_string(),
             url: notification_receiver_url
         };
 
@@ -31,7 +31,7 @@ impl NotificationService {
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
             .body(to_string(&payload).unwrap())
-            .send().await();
+            .send().await;
         log::warn_!("Sent subscribe request to: {}", request_url);
 
         return match request {
@@ -51,7 +51,7 @@ impl NotificationService {
 
     pub fn subscribe(product_type: &str) -> Result<SubscriberRequest> {
         let product_type_clone = String::from(product_type);
-        return thread::spawn(move || Self.subscribe_request(product_type_clone))
+        return thread::spawn(move || Self::subscribe_request(product_type_clone))
             .join().unwrap();
     }
 }

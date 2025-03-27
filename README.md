@@ -102,3 +102,15 @@ This is the place for you to write reflections:
 
 
 #### Reflection Subscriber-2
+
+**Jawaban:**
+
+1. **Eksplorasi Kode di Luar Tutorial:**  
+   Saya memang sempat mengeksplorasi kode di luar langkah-langkah tutorial, misalnya melihat isi `src/lib.rs` dan modul-modul utilitas lainnya. Dari situ, saya belajar bagaimana struktur project dikomposisikan, bagaimana modul-modul dipecah agar tidak saling bergantung secara erat, dan bagaimana penggunaan konfigurasi serta error handling diintegrasikan dengan framework Rocket. Pemahaman ini membantu saya menyusun aplikasi yang lebih terstruktur dan scalable.
+
+2. **Observer Pattern dan Penambahan Subscriber:**  
+   Dalam tutorial ini, kita menerapkan Observer pattern dengan model push, di mana publisher secara langsung mengirim notifikasi kepada setiap subscriber yang telah terdaftar. Hal ini membuat penambahan subscriber menjadi mudah, karena publisher tidak perlu tahu detail implementasi masing-masing subscriber. Setiap subscriber cukup mendaftar dan secara otomatis akan menerima pemberitahuan.  
+   Jika kita menjalankan lebih dari satu instance Main App, secara desain hal ini masih mudah dikelola karena setiap instance publisher akan bekerja secara independen untuk mengirim notifikasi. Namun, untuk memastikan konsistensi antar publisher, mungkin diperlukan mekanisme koordinasi tambahan seperti shared messaging system atau load balancing.
+
+3. **Pengujian dan Peningkatan Dokumentasi Postman:**  
+   Saya juga mencoba membuat test sendiri serta meningkatkan dokumentasi dalam Postman collection. Pembuatan test membantu memastikan setiap endpoint berjalan sesuai harapan dan memudahkan deteksi error sedini mungkin. Sementara itu, peningkatan dokumentasi dalam Postman, seperti menambahkan deskripsi endpoint, variabel lingkungan, dan skrip otomatisasi testing, sangat membantu dalam validasi API serta kolaborasi tim pada project kelompok. Pengalaman ini memberikan saya gambaran bagaimana proses pengujian dan dokumentasi dapat meningkatkan kualitas dan keandalan aplikasi.

@@ -86,4 +86,19 @@ This is the place for you to write reflections:
 
 #### Reflection Subscriber-1
 
+**Jawaban:**
+
+1. **Penggunaan RwLock<> pada Vec Notifications**  
+   Pada tutorial ini, kita menggunakan `RwLock<Vec<Notification>>` untuk menyinkronkan akses ke daftar notifikasi. Hal ini diperlukan karena:
+   - Akses ke resource bersama (dalam hal ini, Vec notifikasi) harus dijaga agar aman dari race condition di lingkungan multi-thread.  
+   - Dengan `RwLock`, kita dapat memberikan akses baca (read) secara bersamaan ke banyak thread ketika tidak terjadi modifikasi, sehingga meningkatkan performa.  
+   - Jika kita hanya menggunakan `Mutex<>`, maka setiap akses—baik baca maupun tulis—akan mengunci seluruh resource, yang dapat menurunkan performa dengan mengurangi paralelisme.
+
+2. **Alasan Rust Menggunakan lazy_static dan Pembatasan Mutasi pada Static Variable**  
+   Di Rust, variabel global atau "static" memiliki aturan kepemilikan yang ketat untuk menjaga keamanan memori.  
+   - Dengan menggunakan external library seperti `lazy_static`, kita dapat mendefinisikan variabel static yang diinisialisasi secara lazy saat pertama kali diakses.  
+   - Rust tidak mengizinkan mutasi pada static variable secara langsung (seperti di Java) karena akan mengabaikan aturan safety dan concurrency yang dijamin oleh compiler.  
+   - Melalui `lazy_static`, kita dapat membungkus variabel tersebut dengan _synchronization primitive_ seperti `RwLock` atau `Mutex` sehingga mutasi dapat dilakukan dengan cara yang aman dan terkontrol, serta menghindari data race di waktu kompilasi maupun waktu run.
+
+
 #### Reflection Subscriber-2
